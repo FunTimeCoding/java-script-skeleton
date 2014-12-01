@@ -1,0 +1,25 @@
+{
+    "name": "js-skeleton",
+    "version": "0.0.1",
+    "description": "JavaScript project skeleton",
+    "devDependencies": {
+        "grunt": "*",
+        "grunt-cli": "*",
+        "jasmine": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-jasmine": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-concat": "*"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/username/js-skeleton.git"
+    },
+    "author": "Alexander Reitzel",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/username/js-skeleton/issues"
+    },
+    "homepage": "https://github.com/username/js-skeleton"
+}
