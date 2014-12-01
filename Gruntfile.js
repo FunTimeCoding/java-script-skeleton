@@ -54,5 +54,3 @@ module.exports = function(grunt) {
     grunt.registerTask('test', ['jshint', 'jasmine']);
     grunt.registerTask('default', ['jshint', 'jasmine', 'concat', 'uglify']);
 };
-
-// vim: ft=javascript

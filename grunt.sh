@@ -1,2 +1,2 @@
 #!/bin/sh
-node_modules/grunt-cli/bin/grunt --gruntfile Gruntfile
+node_modules/grunt-cli/bin/grunt
