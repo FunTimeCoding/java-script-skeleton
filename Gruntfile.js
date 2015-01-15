@@ -1,15 +1,6 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        jasmine: {
-            all: {
-                src: 'src/**/*.js',
-                options: {
-                    specs: 'spec/*Spec.js',
-                    helpers: 'spec/*Helper.js'
-                }
-            }
-        },
         jasmine_node: {
             options: {
                 forceExit: true,
@@ -44,7 +35,6 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.registerTask('default', ['jshint', 'jasmine_node']);

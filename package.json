@@ -4,11 +4,9 @@
     "description": "Stub description for example-project.",
     "author": "Alexander Reitzel",
     "devDependencies": {
-        "jasmine-node": "*",
-        "grunt-jasmine-node": "*",
         "grunt-cli": "*",
+        "grunt-jasmine-node": "*",
         "grunt-contrib-jshint": "*",
-        "grunt-contrib-jasmine": "*",
         "grunt-contrib-watch": "*"
     },
     "repository": {
