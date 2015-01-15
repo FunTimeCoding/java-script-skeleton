@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "description": "JavaScript project skeleton",
     "devDependencies": {
-        "grunt": "*",
+        "jasmine-node": "*",
+        "grunt-jasmine-node": "*",
         "grunt-cli": "*",
-        "jasmine": "*",
         "grunt-contrib-uglify": "*",
         "grunt-contrib-jshint": "*",
         "grunt-contrib-jasmine": "*",

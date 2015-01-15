@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         concat: {
@@ -29,6 +29,22 @@ module.exports = function(grunt) {
                 }
             }
         },
+        jasmine_node: {
+            options: {
+                forceExit: true,
+                match: '.',
+                matchall: false,
+                extensions: 'js',
+                specNameMatcher: 'spec',
+                jUnit: {
+                    report: true,
+                    savePath: "build/jasmine",
+                    useDotNotation: true,
+                    consolidate: true
+                }
+            },
+            all: ['spec']
+        },
         jshint: {
             files: ['Gruntfile.js', 'src/**/*.js', 'spec/**/*.js'],
             options: {
@@ -42,7 +58,7 @@ module.exports = function(grunt) {
         },
         watch: {
             files: ['<%= jshint.files %>'],
-            tasks: ['jshint', 'jasmine']
+            tasks: ['jshint', 'jasmine_node']
         }
     });
 
@@ -51,6 +67,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.registerTask('test', ['jshint', 'jasmine']);
-    grunt.registerTask('default', ['jshint', 'jasmine', 'concat', 'uglify']);
+    grunt.loadNpmTasks('grunt-jasmine-node');
+    grunt.registerTask('test', ['jshint', 'jasmine_node']);
+    grunt.registerTask('jas', 'jasmine_node');
+    grunt.registerTask('default', ['jshint', 'jasmine_node', 'concat', 'uglify']);
 };
