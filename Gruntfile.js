@@ -10,7 +10,7 @@ module.exports = function (grunt) {
                 specNameMatcher: 'spec',
                 jUnit: {
                     report: true,
-                    savePath: "build/jasmine",
+                    savePath: "build/log",
                     useDotNotation: true,
                     consolidate: true
                 }
@@ -18,14 +18,14 @@ module.exports = function (grunt) {
             all: ['spec']
         },
         jshint: {
-            files: ['Gruntfile.js', 'src/**/*.js', 'spec/**/*.js'],
+            all: [
+                'Gruntfile.js',
+                'src/**/*.js',
+                'spec/**/*.js'
+            ],
             options: {
-                globals: {
-                    jQuery: true,
-                    console: true,
-                    module: true,
-                    document: true
-                }
+                reporter: 'checkstyle',
+                reporterOutput: 'build/log/checkstyle-result.xml'
             }
         },
         watch: {
@@ -34,8 +34,8 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-jasmine-node');
     grunt.registerTask('default', ['jshint', 'jasmine_node']);
 };
