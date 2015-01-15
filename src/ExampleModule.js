@@ -3,11 +3,11 @@ function ExampleModule() {
     this.returnCode = 0;
 }
 
-// class methods
+// module functions
 ExampleModule.prototype.run = function () {
     console.log('Hello World');
     return this.returnCode;
 };
 
-// export the class
+// export the module
 module.exports = ExampleModule;

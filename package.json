@@ -1,25 +1,23 @@
 {
-    "name": "js-skeleton",
+    "name": "example-project",
     "version": "0.0.1",
-    "description": "JavaScript project skeleton",
+    "description": "Stub description for example-project.",
+    "author": "Alexander Reitzel",
     "devDependencies": {
         "jasmine-node": "*",
         "grunt-jasmine-node": "*",
         "grunt-cli": "*",
-        "grunt-contrib-uglify": "*",
         "grunt-contrib-jshint": "*",
         "grunt-contrib-jasmine": "*",
-        "grunt-contrib-watch": "*",
-        "grunt-contrib-concat": "*"
+        "grunt-contrib-watch": "*"
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/username/js-skeleton.git"
+        "url": "git://github.com/username/example-project.git"
     },
-    "author": "Alexander Reitzel",
-    "license": "MIT",
+    "license": "proprietary",
     "bugs": {
-        "url": "https://github.com/username/js-skeleton/issues"
+        "url": "https://github.com/username/example-project/issues"
     },
-    "homepage": "https://github.com/username/js-skeleton"
+    "homepage": "https://github.com/username/example-project"
 }

@@ -1,4 +1,4 @@
-# JavaScript Skeleton
+# NodeJS Skeleton
 
 ## Development
 
