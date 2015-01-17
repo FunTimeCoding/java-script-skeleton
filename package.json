@@ -16,7 +16,7 @@
         "type": "git",
         "url": "git://github.com/username/example-project.git"
     },
-    "license": "proprietary",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/username/example-project/issues"
     },
