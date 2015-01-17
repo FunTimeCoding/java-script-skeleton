@@ -1,13 +1,9 @@
-// constructor
 function ExampleModule() {
-    this.returnCode = 0;
+    this.name = 'world';
 }
 
-// module functions
-ExampleModule.prototype.run = function () {
-    console.log('Hello World');
-    return this.returnCode;
+ExampleModule.prototype.hello = function () {
+    return 'hello ' + this.name;
 };
 
-// export the module
 module.exports = ExampleModule;

@@ -5,9 +5,12 @@
     "author": "Alexander Reitzel",
     "devDependencies": {
         "grunt-cli": "*",
+        "jquery": "*",
         "grunt-jasmine-node": "*",
         "grunt-contrib-jshint": "*",
-        "grunt-contrib-watch": "*"
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-concat": "*",
+        "grunt-browserify": "*"
     },
     "repository": {
         "type": "git",
