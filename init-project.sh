@@ -22,9 +22,11 @@ echo "Camel: ${CAMEL}"
 echo "Dash: ${DASH}"
 echo "Initials: ${INITIALS}"
 
-sed -i "" -e "s/em/${INITIALS}/g" web/index.html src/ConsoleMain.js src/WebMain.js spec/ExampleModuleSpec.js
-sed -i "" -e "s/ExampleModule/${CAMEL}/g" web/index.html src/ConsoleMain.js src/WebMain.js src/ExampleModule.js spec/ExampleModuleSpec.js
+sed -i "" -e "s/em/${INITIALS}/g" package.json web/index.html src/ConsoleMain.js src/WebMain.js spec/ExampleModuleSpec.js
+sed -i "" -e "s/ExampleModule/${CAMEL}/g" package.json web/index.html src/ConsoleMain.js src/WebMain.js src/ExampleModule.js spec/ExampleModuleSpec.js
 sed -i "" -e "s/example-project/${DASH}/g" package.json web/index.html
+sed -i "" -e "s/\"example-script\"/\"${DASH}\"/g" package.json
+sed -i "" -e "s/bin\/example-script/${INITIALS}/g" package.json
 
 git mv "src/ExampleModule.js" "src/${CAMEL}.js"
 git mv "spec/ExampleModuleSpec.js" "spec/${CAMEL}Spec.js"

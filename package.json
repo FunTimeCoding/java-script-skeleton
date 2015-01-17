@@ -3,6 +3,12 @@
     "version": "0.0.1",
     "description": "Stub description for example-project.",
     "author": "Alexander Reitzel",
+    "license": "MIT",
+    "homepage": "https://github.com/username/example-project",
+    "main": "./src/ExampleModule",
+    "bin": {
+        "example-script": "./bin/example-script"
+    },
     "devDependencies": {
         "grunt-cli": "*",
         "jquery": "*",
@@ -16,9 +22,7 @@
         "type": "git",
         "url": "git://github.com/username/example-project.git"
     },
-    "license": "MIT",
     "bugs": {
         "url": "https://github.com/username/example-project/issues"
-    },
-    "homepage": "https://github.com/username/example-project"
+    }
 }
