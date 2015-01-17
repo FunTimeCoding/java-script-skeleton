@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var ConsoleMain = require('../src/ConsoleMain.js');
-var em = new ConsoleMain();
-var exitCode = em.run();
+var cm = new ConsoleMain();
+var exitCode = cm.run();
 
 process.exit(code = exitCode);
