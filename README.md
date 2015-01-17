@@ -40,3 +40,4 @@ ant
 ## Important details
 
 * The script `grunt.sh` is merely a wrapper intended for ease of use.
+* The directories `src/LanguageExample` and `spec/LanguageExample` are for sharing language specific knowledge.
