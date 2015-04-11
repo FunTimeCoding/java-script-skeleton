@@ -10,9 +10,10 @@
         "example-script": "./bin/example-script"
     },
     "devDependencies": {
+        "grunt": "*",
         "grunt-cli": "*",
         "jquery": "*",
-        "grunt-jasmine-node": "*",
+        "grunt-jasmine-nodejs": "*",
         "grunt-contrib-jshint": "*",
         "grunt-contrib-watch": "*",
         "grunt-contrib-concat": "*",

@@ -7,10 +7,16 @@ module.exports = function (grunt) {
                 helperNameSuffix: "Helper.js",
                 reporters: {
                     console: {
-                        colors: true,
+                        colors: false,
                         cleanStack: true,
                         verbose: true
-                    }
+                    },
+                    junit: {
+                        savePath: "build/log",
+                        filePrefix: "junit-report",
+                        consolidate: true,
+                        useDotNotation: true
+                    },
                 },
             },
             your_target: {
@@ -28,6 +34,10 @@ module.exports = function (grunt) {
                 'src/**/*.js',
                 'spec/**/*.js'
             ],
+            options: {
+                reporter: 'checkstyle',
+                reporterOutput: 'build/log/checkstyle-result.xml'
+            }
         },
         browserify: {
             vendor: {
@@ -48,13 +58,8 @@ module.exports = function (grunt) {
         concat: {
             'web/main.js': ['build/vendor.js', 'build/app.js']
         },
-        watch: {
-            files: ['<%= jshint.all %>'],
-            tasks: ['jshint', 'jasmine_nodejs']
-        }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jasmine-nodejs');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');

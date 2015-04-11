@@ -12,32 +12,33 @@ bin/example-script
 
 ## Testing
 
-Install test tools.
+Install dependencies and test tools.
 
 ```sh
 npm install
 ```
 
-Run tests.
+Run code lint check and tests.
 
 ```sh
-./grunt.sh
+./run-lint-check.sh
+./run-tests.sh
 ```
 
-Compile JS code for web usage, generating `web/main.js`.
+Compile JS code for web deployment, generating `web/main.js`.
 
 ```sh
-./grunt.sh web
+./grunt.sh build
 ```
 
-Run ant like Jenkins. Requires `ant` to be installed.
+Build project like Jenkins.
 
 ```sh
-ant
+./build.sh
 ```
 
 
 ## Important details
 
-* The script `grunt.sh` is merely a wrapper intended for ease of use.
+* The script `grunt.sh` is a wrapper script intended for ease of use.
 * The directories `src/LanguageExample` and `spec/LanguageExample` are for sharing language specific knowledge.
