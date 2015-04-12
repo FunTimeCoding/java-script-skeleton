@@ -14,7 +14,8 @@ if [[ ! ${CAMEL} =~ ^([A-Z][a-z0-9]+){2,}$ ]]; then
     exit 1
 fi
 
-LOWER_CAMEL=$(echo ${CAMEL} | sed -E 's/./\L&/')
+FIRST_LETTER=$(echo ${CAMEL} | cut -c 1 | tr '[:upper:]' '[:lower:]')
+LOWER_CAMEL=${FIRST_LETTER}$(echo ${CAMEL} |cut -c2-)
 DASH=$(echo ${CAMEL} | sed -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 UNDERSCORE=$(echo ${DASH} | sed -E 's/-/_/g')
 INITIALS=$(echo ${CAMEL} | sed 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]' )
