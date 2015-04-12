@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-ARGS=$(getopt -o w:p:hcv -l workspace:,help,clean,verbose --name "${0}" -- "$@")
+ARGS=$(getopt -o w:hcv -l workspace:,help,clean,verbose --name "${0}" -- "$@")
 CLEAN=0
 
 while true; do
