@@ -14,6 +14,7 @@ if [[ ! ${CAMEL} =~ ^([A-Z][a-z0-9]+){2,}$ ]]; then
     exit 1
 fi
 
+LOWER_CAMEL=$(echo ${CAMEL} | sed -E 's/./\L&/')
 DASH=$(echo ${CAMEL} | sed -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 UNDERSCORE=$(echo ${DASH} | sed -E 's/-/_/g')
 INITIALS=$(echo ${CAMEL} | sed 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]' )
@@ -23,7 +24,8 @@ echo "Dash: ${DASH}"
 echo "Initials: ${INITIALS}"
 
 sed -i "" -e "s/em/${INITIALS}/g" package.json web/index.html src/ConsoleMain.js src/WebMain.js spec/ExampleModuleSpec.js
-sed -i "" -e "s/ExampleModule/${CAMEL}/g" package.json web/index.html src/ConsoleMain.js src/WebMain.js src/ExampleModule.js spec/ExampleModuleSpec.js
+sed -i "" -e "s/ExampleModule/${CAMEL}/g" package.json web/index.html src/ConsoleMain.js src/WebMain.js spec/ExampleModuleSpec.js
+sed -i "" -e "s/exampleModule/${LOWER_CAMEL}/g" src/ExampleModule.js
 sed -i "" -e "s/example-project/${DASH}/g" package.json web/index.html
 sed -i "" -e "s/\"example-script\"/\"${DASH}\"/g" package.json
 sed -i "" -e "s/bin\/example-script/bin\/${INITIALS}/g" package.json

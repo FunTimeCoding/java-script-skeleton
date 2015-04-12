@@ -1,9 +1,9 @@
-function Calculator() {
+var calculator = function() {
     // empty constructor
-}
+};
 
-Calculator.prototype.add = function (a, b) {
+calculator.prototype.add = function (a, b) {
     return a + b;
 };
 
-module.exports = Calculator;
+module.exports = calculator;

@@ -1,9 +1,9 @@
-function ExampleModule() {
+var exampleModule = function() {
     this.name = 'world';
-}
+};
 
-ExampleModule.prototype.hello = function () {
+exampleModule.prototype.hello = function () {
     return 'hello ' + this.name;
 };
 
-module.exports = ExampleModule;
+module.exports = exampleModule;
