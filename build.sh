@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-getopt -o w:hcv -l workspace:,help,clean,verbose --name "${0}" -- "$@"
+getopt -o w:hcv -l workspace:,help,clean,verbose --name "${0}" -- "$@" > /dev/null
 CLEAN=0
 
 while true; do
@@ -40,12 +40,13 @@ if [ "${WORKSPACE}" = "" ]; then
     WORKSPACE="${SCRIPT_DIR}"
 fi
 
+echo "WORKSPACE: ${WORKSPACE}"
+
 if [ "${CLEAN}" = "1" ]; then
     "${WORKSPACE}/clear-cache.sh"
 fi
 
-echo "WORKSPACE: ${WORKSPACE}"
-rm -rf "${WORKSPACE}/build"
+echo "Upgrading dependencies."
 npm up
 "${WORKSPACE}/run-style-check.sh" --ci-mode
 "${WORKSPACE}/run-metrics.sh" --ci-mode

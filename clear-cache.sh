@@ -1,9 +1,9 @@
 #!/bin/sh -e
 
+echo "Deleting cached and generated files."
 DIR=$(dirname "${0}")
 SCRIPT_DIR=$(cd "${DIR}"; pwd)
-echo "Deleting cache files."
-FILES="build  .coverage .sonar"
+FILES="build .coverage .sonar"
 
 for FILE in ${FILES}; do
     if [ -e "${FILE}" ]; then
