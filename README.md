@@ -18,7 +18,7 @@ Install dependencies and test tools.
 npm install
 ```
 
-Run code lint check and tests.
+Run code style check and tests.
 
 ```sh
 ./run-lint-check.sh
