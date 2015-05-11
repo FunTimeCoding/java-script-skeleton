@@ -13,7 +13,7 @@ echo ""
 echo "Running JSHint."
 
 if [ "${CI_MODE}" = "1" ]; then
-    node_modules/grunt-cli/bin/grunt --gruntfile GruntfileCI.js jshint "$@"
+    node_modules/grunt-cli/bin/grunt --gruntfile .GruntfileCI.js jshint "$@"
 else
     node_modules/grunt-cli/bin/grunt jshint "$@"
 fi
