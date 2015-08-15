@@ -1,4 +1,4 @@
-# JavaScript Skeleton
+# JavaScriptSkeleton
 
 
 ## Operation
@@ -6,7 +6,7 @@
 Run scripts.
 
 ```sh
-bin/example-script
+bin/jss
 ```
 
 

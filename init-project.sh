@@ -5,28 +5,28 @@
 CAMEL=$(echo "${1}" | grep -E '^([A-Z][a-z0-9]+){2,}$') || CAMEL=""
 
 if [ "${CAMEL}" = "" ]; then
-    echo "Usage: ${0} MyUpperCamelCaseProjectName"
+    echo "Usage: ${0} UpperCamelCaseName"
+
     exit 1
+fi
+
+OS=$(uname)
+
+if [ "${OS}" = "Darwin" ]; then
+    SED="gsed"
+else
+    SED="sed"
 fi
 
 FIRST_LETTER=$(echo "${CAMEL}" | cut -c 1 | tr '[:upper:]' '[:lower:]')
 LOWER_CAMEL=${FIRST_LETTER}$(echo "${CAMEL}" |cut -c2-)
-DASH=$(echo "${CAMEL}" | sed -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
-INITIALS=$(echo "${CAMEL}" | sed 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]' )
-
-echo "Camel: ${CAMEL}"
-echo "Dash: ${DASH}"
-echo "Initials: ${INITIALS}"
-
-sed -i "" -e "s/em/${INITIALS}/g" package.json web/index.html src/ConsoleMain.js src/WebMain.js spec/ExampleModuleSpec.js
-sed -i "" -e "s/ExampleModule/${CAMEL}/g" package.json web/index.html src/ConsoleMain.js src/WebMain.js spec/ExampleModuleSpec.js
-sed -i "" -e "s/exampleModule/${LOWER_CAMEL}/g" src/ExampleModule.js
-sed -i "" -e "s/example-project/${DASH}/g" package.json web/index.html
-sed -i "" -e "s/\"example-script\"/\"${DASH}\"/g" package.json
-sed -i "" -e "s/bin\/example-script/bin\/${INITIALS}/g" package.json
-
-git mv src/ExampleModule.js "src/${CAMEL}.js"
-git mv spec/ExampleModuleSpec.js "spec/${CAMEL}Spec.js"
-git mv bin/example-script "bin/${INITIALS}"
-
-echo "Done. Files were edited and moved using git. Review those changes. You may also delete this script now."
+DASH=$(echo "${CAMEL}" | ${SED} -E 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
+INITIALS=$(echo "${CAMEL}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]' )
+echo "LOWER_CAMEL: ${LOWER_CAMEL}"
+echo "DASH: ${DASH}"
+echo "INITIALS: ${INITIALS}"
+find -E . -type f ! -regex '^.*/(build|node_modules|\.git|\.idea)/.*$' -exec sh -c '${1} -i -e "s/JavaScriptSkeleton/${2}/g" -e "s/javaScriptSkeleton/${3}/g" -e "s/java-script-skeleton/${4}/g" -e "s/jss/${5}/g" ${6}' '_' "${SED}" "${CAMEL}" "${LOWER_CAMEL}" "${DASH}" "${INITIALS}" '{}' \;
+git mv src/JavaScriptSkeleton.js "src/${CAMEL}.js"
+git mv spec/JavaScriptSkeletonSpec.js "spec/${CAMEL}Spec.js"
+git mv bin/jss "bin/${INITIALS}"
+echo "Done. Files were edited and moved using git. Review those changes."

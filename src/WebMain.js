@@ -1,7 +1,7 @@
 var $ = require('jquery');
-var ExampleModule = require('./ExampleModule.js');
+var JavaScriptSkeleton = require('./JavaScriptSkeleton.js');
 
 $().ready(function () {
-    var em = new ExampleModule();
-    console.log(em.hello());
+    var application = new JavaScriptSkeleton();
+    console.log(application.hello());
 });
