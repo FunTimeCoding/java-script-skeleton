@@ -29,4 +29,5 @@ find -E . -type f ! -regex '^.*/(build|node_modules|\.git|\.idea)/.*$' -exec sh 
 git mv src/JavaScriptSkeleton.js "src/${CAMEL}.js"
 git mv spec/JavaScriptSkeletonSpec.js "spec/${CAMEL}Spec.js"
 git mv bin/jss "bin/${INITIALS}"
+rm init-project.sh
 echo "Done. Files were edited and moved using git. Review those changes."
