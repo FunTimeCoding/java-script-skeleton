@@ -1,5 +1,5 @@
 var javaScriptSkeleton = function() {
-    this.name = 'Friend.';
+    this.name = 'friend.';
 };
 
 javaScriptSkeleton.prototype.hello = function () {
