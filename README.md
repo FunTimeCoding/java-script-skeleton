@@ -15,7 +15,7 @@ bin/jss
 
 This section explains how to use scripts that are intended to ease the development of this project.
 
-Install dependencies and develoment tools.
+Install dependencies and development tools.
 
 ```sh
 npm install
