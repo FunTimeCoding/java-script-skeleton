@@ -15,16 +15,16 @@ bin/jss
 
 This section explains how to use scripts that are intended to ease the development of this project.
 
-Install dependencies and test tools.
+Install dependencies and develoment tools.
 
 ```sh
 npm install
 ```
 
-Run code style check and tests.
+Run style check and tests.
 
 ```sh
-./run-lint-check.sh
+./run-style-check.sh
 ./run-tests.sh
 ```
 
