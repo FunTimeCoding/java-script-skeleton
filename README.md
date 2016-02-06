@@ -1,16 +1,19 @@
 # JavaScriptSkeleton
 
+## Usage
 
-## Operation
+This section explains how to use this project.
 
-Run scripts.
+Run the main entry point program.
 
 ```sh
 bin/jss
 ```
 
 
-## Testing
+## Development
+
+This section explains how to use scripts that are intended to ease the development of this project.
 
 Install dependencies and test tools.
 
@@ -31,7 +34,7 @@ Compile JS code for web deployment, generating `web/main.js`.
 ./grunt.sh build
 ```
 
-Build project like Jenkins.
+Build the project like Jenkins.
 
 ```sh
 ./build.sh
