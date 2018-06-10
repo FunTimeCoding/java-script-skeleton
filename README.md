@@ -1,10 +1,19 @@
 # JavaScriptSkeleton
 
+## Setup
+
+Install project dependencies.
+
+```sh
+script/setup.sh
+```
+
+
 ## Usage
 
-This section explains how to use this project.
+This section explains how to use the project.
 
-Run the main entry point program.
+Run the main program.
 
 ```sh
 bin/jss
@@ -13,35 +22,40 @@ bin/jss
 
 ## Development
 
-This section explains how to use scripts that are intended to ease the development of this project.
+This section explains how to improve the project.
 
-Install dependencies and development tools.
-
-```sh
-npm install
-```
-
-Run style check and tests.
+Configure Git on Windows before cloning. This avoids problems with Vagrant and VirtualBox.
 
 ```sh
-./run-style-check.sh
-./run-tests.sh
+git config --global core.autocrlf input
 ```
 
-Compile JS code for web deployment, generating `web/main.js`.
+Create the development virtual machine on Linux and Darwin.
 
 ```sh
-./grunt.sh build
+script/vagrant/create.sh
 ```
 
-Build the project like Jenkins.
+Create the development virtual machine on Windows.
+
+```bat
+script\vagrant\create.bat
+```
+
+Run tests.
 
 ```sh
-./build.sh
+script/test.sh [--help]
 ```
 
+Run style check.
 
-## Important details
+```sh
+script/check.sh [--help]
+```
 
-* The script `grunt.sh` is a wrapper script intended for ease of use.
-* The directories `src/LanguageExample` and `spec/LanguageExample` are for sharing language specific knowledge.
+Build project.
+
+```sh
+script/build.sh
+```

@@ -1,5 +1,7 @@
+build
+tmp
+.vagrant
 node_modules
 dist
-build
 web/main.js
 .sonar
