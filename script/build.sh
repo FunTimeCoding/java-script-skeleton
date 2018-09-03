@@ -3,5 +3,6 @@
 rm -rf build
 npm install
 script/check.sh --ci-mode
-#script/vagrant/test.sh
 script/test.sh --ci-mode
+# TODO: Finish implementation, then uncomment.
+#script/docker/build.sh

@@ -1,5 +1,10 @@
 #!/bin/sh -e
 
+DIRECTORY=$(dirname "${0}")
+SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+# shellcheck source=/dev/null
+. "${SCRIPT_DIRECTORY}/../lib/common.sh"
+
 if [ "${1}" = --help ]; then
     echo "Usage: ${0} [--ci-mode]"
 
@@ -23,7 +28,74 @@ else
     FIND='find'
 fi
 
-EXCLUDE_FILTER='^.*/(build|tmp|node_modules|\.git|\.vagrant|\.idea)/.*$'
+MARKDOWN_FILES=$(${FIND} . -regextype posix-extended -name '*.md' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
+BLACKLIST=''
+DICTIONARY=en_US
+mkdir -p tmp
+
+if [ -d documentation/dictionary ]; then
+    cat documentation/dictionary/*.dic > tmp/combined.dic
+else
+    touch tmp/combined.dic
+fi
+
+for FILE in ${MARKDOWN_FILES}; do
+    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l "${FILE}" | sort | uniq)
+
+    if [ ! "${WORDS}" = '' ]; then
+        echo "${FILE}"
+
+        for WORD in ${WORDS}; do
+            BLACKLISTED=$(echo "${BLACKLIST}" | grep "${WORD}") || BLACKLISTED=false
+
+            if [ "${BLACKLISTED}" = false ]; then
+                if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+                    grep --line-number "${WORD}" "${FILE}"
+                else
+                    # The equals character is required.
+                    grep --line-number --color=always "${WORD}" "${FILE}"
+                fi
+            else
+                echo "Blacklisted word: ${WORD}"
+            fi
+        done
+
+        echo
+    fi
+done
+
+TEX_FILES=$(${FIND} . -regextype posix-extended -name '*.tex' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
+
+for FILE in ${TEX_FILES}; do
+    WORDS=$(hunspell -d "${DICTIONARY}" -p tmp/combined.dic -l -t "${FILE}")
+
+    if [ ! "${WORDS}" = '' ]; then
+        echo "${FILE}"
+
+        for WORD in ${WORDS}; do
+            STARTS_WITH_DASH=$(echo "${WORD}" | grep -q '^-') || STARTS_WITH_DASH=false
+
+            if [ "${STARTS_WITH_DASH}" = false ]; then
+                BLACKLISTED=$(echo "${BLACKLIST}" | grep "${WORD}") || BLACKLISTED=false
+
+                if [ "${BLACKLISTED}" = false ]; then
+                    if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+                        grep --line-number "${WORD}" "${FILE}"
+                    else
+                        # The equals character is required.
+                        grep --line-number --color=always "${WORD}" "${FILE}"
+                    fi
+                else
+                    echo "Skip blacklisted: ${WORD}"
+                fi
+            else
+                echo "Skip invalid: ${WORD}"
+            fi
+        done
+
+        echo
+    fi
+done
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     FILES=$(${FIND} . -regextype posix-extended -name '*.sh' ! -regex "${EXCLUDE_FILTER}" -printf '%P\n')
