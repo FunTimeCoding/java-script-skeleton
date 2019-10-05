@@ -51,6 +51,8 @@ cp playbook.yaml "${TARGET}"
 cp Vagrantfile "${TARGET}"
 cp Dockerfile "${TARGET}"
 cp Jenkinsfile "${TARGET}"
+cp Gruntfile.js "${TARGET}"
+cp .GruntfileCI.js "${TARGET}"
 cd "${TARGET}" || exit 1
 echo "${NAME}" | grep --quiet 'Skeleton$' && IS_SKELETON=true || IS_SKELETON=false
 
