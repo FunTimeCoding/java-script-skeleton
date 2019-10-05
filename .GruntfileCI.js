@@ -35,6 +35,7 @@ module.exports = function (grunt) {
                 'spec/**/*.js'
             ],
             options: {
+                esversion: 6,
                 reporter: 'checkstyle',
                 reporterOutput: 'build/log/checkstyle-result.xml'
             }

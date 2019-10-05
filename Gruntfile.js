@@ -28,6 +28,9 @@ module.exports = function (grunt) {
                 'src/**/*.js',
                 'spec/**/*.js'
             ],
+            options: {
+                esversion: 6,
+            }
         },
         browserify: {
             vendor: {
