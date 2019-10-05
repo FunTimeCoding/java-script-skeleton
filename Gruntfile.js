@@ -47,14 +47,9 @@ module.exports = function (grunt) {
         },
         concat: {
             'web/main.js': ['build/vendor.js', 'build/app.js']
-        },
-        watch: {
-            files: ['<%= jshint.all %>'],
-            tasks: ['jshint', 'jasmine_nodejs']
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jasmine-nodejs');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');

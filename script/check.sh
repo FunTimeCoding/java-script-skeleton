@@ -146,6 +146,8 @@ if [ ! "${SHELLCHECK_DISABLES}" = '' ]; then
     echo "${SHELLCHECK_DISABLES}"
 fi
 
+echo
+
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
     node_modules/grunt-cli/bin/grunt --gruntfile .GruntfileCI.js jshint
 else
