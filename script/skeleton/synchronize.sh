@@ -63,9 +63,10 @@ fi
 DASH=$(echo "${NAME}" | ${SED} --regexp-extended 's/([A-Za-z0-9])([A-Z])/\1-\2/g' | tr '[:upper:]' '[:lower:]')
 INITIALS=$(echo "${NAME}" | ${SED} 's/\([A-Z]\)[a-z]*/\1/g' | tr '[:upper:]' '[:lower:]')
 UNDERSCORE=$(echo "${DASH}" | ${SED} --regexp-extended 's/-/_/g')
+LOWER_CAMEL=$(echo "${NAME}" | ${SED} --expression 's/^./\L&\E/')
 # shellcheck disable=SC2016
 # TODO: Delete after testing the include way works throughout all projects.
-#${FIND} . -regextype posix-extended -type f ! -regex "${EXCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/JavaScriptSkeleton/${2}/g" --expression "s/java-script-skeleton/${3}/g" --expression "s/java_script_skeleton/${4}/g" "${5}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" '{}' \;
-${FIND} . -regextype posix-extended -type f -regex "${INCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/JavaScriptSkeleton/${2}/g" --expression "s/java-script-skeleton/${3}/g" --expression "s/java_script_skeleton/${4}/g" "${5}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" '{}' \;
+#${FIND} . -regextype posix-extended -type f ! -regex "${EXCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/JavaScriptSkeleton/${2}/g" --expression "s/java-script-skeleton/${3}/g" --expression "s/java_script_skeleton/${4}/g" --expression "s/javaScriptSkeleton/${5}/g" "${6}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" "${LOWER_CAMEL}" '{}' \;
+${FIND} . -regextype posix-extended -type f -regex "${INCLUDE_FILTER}" -exec sh -c '${1} --in-place --expression "s/JavaScriptSkeleton/${2}/g" --expression "s/java-script-skeleton/${3}/g" --expression "s/java_script_skeleton/${4}/g" --expression "s/javaScriptSkeleton/${5}/g" "${6}"' '_' "${SED}" "${NAME}" "${DASH}" "${UNDERSCORE}" "${LOWER_CAMEL}" '{}' \;
 # shellcheck disable=SC1117
 ${SED} --in-place --expression "s/bin\/jss/bin\/${INITIALS}/g" README.md Dockerfile
