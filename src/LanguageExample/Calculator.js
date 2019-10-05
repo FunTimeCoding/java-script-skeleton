@@ -1,4 +1,4 @@
-var calculator = function() {
+let calculator = function() {
     // empty constructor
 };
 

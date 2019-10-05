@@ -1,8 +1,8 @@
-var ExampleModule = require('../src/JavaScriptSkeleton.js');
+let ExampleModule = require('../src/JavaScriptSkeleton.js');
 
 describe("JavaScriptSkeleton", function () {
     it("can greet the world", function () {
-        var em = new ExampleModule();
+        let em = new ExampleModule();
         expect(em.hello()).toEqual("Hello friend.");
     });
 });

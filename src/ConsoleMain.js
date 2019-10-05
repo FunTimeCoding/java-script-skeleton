@@ -1,11 +1,11 @@
-var JavaScriptSkeleton = require('./JavaScriptSkeleton.js');
+let JavaScriptSkeleton = require('./JavaScriptSkeleton.js');
 
-var consoleMain = function() {
+let consoleMain = function() {
     this.returnCode = 0;
 };
 
 consoleMain.prototype.run = function () {
-    var javaScriptSkeleton = new JavaScriptSkeleton();
+    let javaScriptSkeleton = new JavaScriptSkeleton();
     console.log(javaScriptSkeleton.hello());
 
     return this.returnCode;

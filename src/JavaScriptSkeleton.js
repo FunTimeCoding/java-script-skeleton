@@ -1,4 +1,4 @@
-var javaScriptSkeleton = function() {
+let javaScriptSkeleton = function() {
     this.name = 'friend.';
 };
 
