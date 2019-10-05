@@ -1,20 +1,20 @@
 {
-    "name": "javascript-skeleton",
+    "name": "java-script-skeleton",
     "version": "0.0.1",
-    "description": "Stub description for javascript-skeleton.",
+    "description": "Stub description for java-script-skeleton.",
     "author": "Alexander Reitzel",
     "license": "MIT",
-    "homepage": "https://github.com/FunTimeCoding/javascript-skeleton",
+    "homepage": "https://github.com/FunTimeCoding/java-script-skeleton",
     "main": "./src/ExampleModule",
     "bin": {
         "jss": "./bin/jss"
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/FunTimeCoding/javascript-skeleton.git"
+        "url": "git://github.com/FunTimeCoding/java-script-skeleton.git"
     },
     "bugs": {
-        "url": "https://github.com/FunTimeCoding/javascript-skeleton/issues"
+        "url": "https://github.com/FunTimeCoding/java-script-skeleton/issues"
     },
     "dependencies": {
         "jquery": "^3.4.1"
