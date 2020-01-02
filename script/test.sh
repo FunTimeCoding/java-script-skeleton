@@ -2,8 +2,7 @@
 
 if [ "${1}" = --ci-mode ]; then
     shift
-    node_modules/grunt-cli/bin/grunt --gruntfile .GruntfileCI.js jshint "$@"
-    node_modules/grunt-cli/bin/grunt --gruntfile .GruntfileCI.js jasmine_nodejs "$@"
+    node_modules/.bin/grunt --gruntfile .GruntfileCI.js "$@"
 else
-    node_modules/grunt-cli/bin/grunt jasmine_nodejs "$@"
+    node_modules/.bin/grunt test "$@"
 fi

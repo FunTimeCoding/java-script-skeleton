@@ -10,3 +10,4 @@ documentation/man/*.1
 node_modules
 dist
 web/main.js
+web/main.js.map
