@@ -55,10 +55,22 @@ module.exports = function (grunt) {
         ]
     );
     grunt.registerTask(
-        'default',
+        'test',
         [
             'jasmine',
+        ]
+    );
+    grunt.registerTask(
+        'check',
+        [
             'jshint',
+        ]
+    );
+    grunt.registerTask(
+        'default',
+        [
+            'test',
+            'check',
         ]
     );
 };
