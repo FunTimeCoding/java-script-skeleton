@@ -13,6 +13,28 @@ module.exports = function (grunt) {
                 reporterOutput: 'build/log/checkstyle-result.xml',
             },
         },
+        jasmine: {
+            src: 'src/**/*.js',
+            options: {
+                specs: 'spec/**/*Spec.js',
+                // helpers: 'spec/*Helper.js',
+                // host: 'http://127.0.0.1:8000/',
+                // template: require('grunt-template-jasmine-requirejs'),
+            }
+        },
+        karma: {
+            unit: {
+                options: {
+                    files: [
+                        'spec/**/*Spec.js'
+                    ],
+                    frameworks: ['jasmine', 'requirejs'],
+                    browsers: ['ChromeHeadless'],
+                    singleRun: true,
+                    basePath: '',
+                }
+            }
+        },
         browserify: {
             vendor: {
                 src: [],
@@ -47,6 +69,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.registerTask(
         'build',
         [
