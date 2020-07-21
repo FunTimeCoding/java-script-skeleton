@@ -1,7 +1,10 @@
 #!/bin/sh -e
 
 DIRECTORY=$(dirname "${0}")
-SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+SCRIPT_DIRECTORY=$(
+    cd "${DIRECTORY}" || exit 1
+    pwd
+)
 # shellcheck source=/dev/null
 . "${SCRIPT_DIRECTORY}/../../configuration/project.sh"
 NAME=$(echo "${1}" | grep --extended-regexp '^([A-Z]+[a-z0-9]*){1,}$') || NAME=''
@@ -37,4 +40,3 @@ ${SED} --in-place --expression "s/bin\/jss/bin\/${INITIALS}/g" README.md Dockerf
 git mv src/JavaScriptSkeleton.js "src/${NAME}.js"
 git mv spec/JavaScriptSkeletonSpec.js "spec/${NAME}Spec.js"
 git mv bin/jss "bin/${INITIALS}"
-echo "# This dictionary file is for domain language." > "documentation/dictionary/${DASH}.dic"

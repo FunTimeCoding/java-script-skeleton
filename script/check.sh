@@ -1,7 +1,10 @@
 #!/bin/sh -e
 
 DIRECTORY=$(dirname "${0}")
-SCRIPT_DIRECTORY=$(cd "${DIRECTORY}" || exit 1; pwd)
+SCRIPT_DIRECTORY=$(
+    cd "${DIRECTORY}" || exit 1
+    pwd
+)
 # shellcheck source=/dev/null
 . "${SCRIPT_DIRECTORY}/../configuration/project.sh"
 
@@ -37,7 +40,7 @@ DICTIONARY=en_US
 mkdir -p tmp
 
 if [ -d documentation/dictionary ]; then
-    cat documentation/dictionary/*.dic > tmp/combined.dic
+    cat documentation/dictionary/*.dic >tmp/combined.dic
 else
     touch tmp/combined.dic
 fi
@@ -93,12 +96,12 @@ if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
 
     for FILE in ${FILES}; do
         FILE_REPLACED=$(echo "${FILE}" | ${SED} 's/\//-/g')
-        shellcheck --format checkstyle "${FILE}" > "build/log/checkstyle-${FILE_REPLACED}.xml" || true
+        shellcheck --external-sources --format checkstyle "${FILE}" >"build/log/checkstyle-${FILE_REPLACED}.xml" || true
     done
 fi
 
 # shellcheck disable=SC2016
-SHELL_SCRIPT_CONCERNS=$(${FIND} . -regextype posix-extended -name '*.sh' -regex "${INCLUDE_FILTER}" -exec sh -c 'shellcheck ${1} || true' '_' '{}' \;)
+SHELL_SCRIPT_CONCERNS=$(${FIND} . -regextype posix-extended -name '*.sh' -regex "${INCLUDE_FILTER}" -exec sh -c 'shellcheck --external-sources ${1} || true' '_' '{}' \;)
 
 if [ ! "${SHELL_SCRIPT_CONCERNS}" = '' ]; then
     CONCERN_FOUND=true
@@ -146,17 +149,15 @@ if [ ! "${SHELLCHECK_DISABLES}" = '' ]; then
     echo "${SHELLCHECK_DISABLES}"
 fi
 
-echo
-
-if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    node_modules/grunt-cli/bin/grunt --gruntfile .GruntfileCI.js jshint
-else
-    node_modules/grunt-cli/bin/grunt jshint
-fi
-
 if [ "${CONCERN_FOUND}" = true ]; then
     echo
     echo "Warning level concern(s) found." >&2
 
     exit 2
+fi
+
+if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
+    script/javascript/check.sh --ci-mode
+else
+    script/javascript/check.sh
 fi
