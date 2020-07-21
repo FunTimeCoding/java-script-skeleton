@@ -1,35 +1,36 @@
 module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        jasmine_nodejs: {
-            options: {
-                specNameSuffix: "Spec.js",
-                helperNameSuffix: "Helper.js",
-                reporters: {
-                    console: {
-                        colors: true,
-                        cleanStack: true,
-                        verbose: true
-                    }
-                },
-            },
-            your_target: {
-                specs: [
-                    "spec/**"
-                ],
-                helpers: [
-                    "spec/**"
-                ]
-            }
-        },
         jshint: {
             all: [
                 'Gruntfile.js',
                 'src/**/*.js',
-                'spec/**/*.js'
+                'spec/**/*.js',
             ],
             options: {
                 esversion: 6,
+            },
+        },
+        jasmine: {
+            src: 'src/**/*.js',
+            options: {
+                specs: 'spec/**/*Spec.js',
+                // helpers: 'spec/*Helper.js',
+                // host: 'http://127.0.0.1:8000/',
+                // template: require('grunt-template-jasmine-requirejs'),
+            }
+        },
+        karma: {
+            unit: {
+                options: {
+                    files: [
+                        'spec/**/*Spec.js'
+                    ],
+                    frameworks: ['jasmine', 'requirejs'],
+                    browsers: ['ChromeHeadless'],
+                    singleRun: true,
+                    basePath: '',
+                }
             }
         },
         browserify: {
@@ -37,26 +38,60 @@ module.exports = function (grunt) {
                 src: [],
                 dest: 'build/vendor.js',
                 options: {
-                    require: ['jquery']
-                }
+                    require: [
+                        'jquery',
+                    ],
+                },
             },
             app: {
-                src: ['src/**/*.js'],
+                src: [
+                    'src/**/*.js',
+                ],
                 dest: 'build/app.js',
                 options: {
-                    external: ['jquery']
-                }
-            }
+                    external: [
+                        'jquery',
+                    ],
+                },
+            },
         },
         concat: {
-            'web/main.js': ['build/vendor.js', 'build/app.js']
-        }
+            'web/main.js': [
+                'build/vendor.js',
+                'build/app.js',
+            ],
+        },
     });
 
-    grunt.loadNpmTasks('grunt-jasmine-nodejs');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.registerTask('build', ['browserify', 'concat']);
-    grunt.registerTask('default', ['jshint', 'jasmine_nodejs']);
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.registerTask(
+        'build',
+        [
+            'browserify',
+            'concat',
+        ]
+    );
+    grunt.registerTask(
+        'test',
+        [
+            'jasmine',
+        ]
+    );
+    grunt.registerTask(
+        'check',
+        [
+            'jshint',
+        ]
+    );
+    grunt.registerTask(
+        'default',
+        [
+            'test',
+            'check',
+        ]
+    );
 };
