@@ -24,9 +24,9 @@ if [ "${1}" = --ci-mode ]; then
 fi
 
 if [ "${CONTINUOUS_INTEGRATION_MODE}" = true ]; then
-    node_modules/grunt-cli/bin/grunt --gruntfile .GruntfileCI.js check
+    node_modules/grunt-cli/bin/grunt --gruntfile .GruntfileCI.js test
 else
-    node_modules/grunt-cli/bin/grunt check
+    node_modules/grunt-cli/bin/grunt test
 fi
 
 if [ "${CONCERN_FOUND}" = true ]; then
